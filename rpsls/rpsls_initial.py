@@ -45,13 +45,16 @@ game_results = {
 # Define function to get user input name or number
 def get_user_input():
     # Get user input
-    user_input = input("Enter your choice: ")
+    user_input = input("Enter your choice (number or name): ")
+    # If user input is a number, convert it to the corresponding name
+    if user_input.isdigit():
+        user_input = game_options[int(user_input)]
     # Validate user input
-    while user_input not in game_options.values():
+    while user_input not in game_options.values() and user_input not in game_options.keys():
         print("Invalid input. Please try again.")
-        user_input = input("Enter your choice: ")
+        user_input = input("Enter your choice (number or name): ")
     # Return user input
-    return user_input
+    return user_input.lower()
 
 # Define function to get computer input
 def get_computer_input():
@@ -96,11 +99,12 @@ def main():
   # Display game results
   display_game_results(game_result)
 
+# Call main function
+main()
+
+# Add play again loop
 while True:
-    main()
     play_again = input("Do you want to play again? (yes/no): ")
     if play_again.lower() != "yes":
         break
-
-# Call main function
-main()
+    main()
