@@ -100,8 +100,6 @@ while True:
     if play_again.lower() != "yes":
         break
 
-# Call the play_game function
-play_game()
 
 
 """ def rpsls():
